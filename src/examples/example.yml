@@ -1,13 +1,20 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Create CloudFront invalidation example
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    aws-cloudfront: yapadubpadoo/aws-cloudfront-orb@main
+  jobs:
+    build:
+      docker:
+        - image: cimg/python:3.6
+      steps:
+        - checkout
+        - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
+        - aws-cloudfront/create-invalidation:
+            distribution-id: a-distribution-id
+            paths: "/path1/file1 /path1/file2 /path2/file3"
   workflows:
-    use-my-orb:
+    aws-cloudfront-invalidation-example:
       jobs:
-        - <orb-name>/<job-name>
+        - build
