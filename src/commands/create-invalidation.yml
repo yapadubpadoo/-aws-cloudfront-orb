@@ -26,4 +26,4 @@ steps:
       aws-region: << parameters.aws-region >>
   - run:
       name: CloudFront create invalidation << parameters.distribution-id >> << parameters.paths >>
-      command: "aws cloudfront create-invalidation --distribution-id << parameters.distribution-id >> --paths << parameters.paths >><<# parameters.arguments >> << parameters.arguments >><</ parameters.arguments >>"
+      command: "aws cloudfront create-invalidation --distribution-id << parameters.distribution-id >> --paths << parameters.paths >>"
